@@ -1,7 +1,13 @@
 #Check Root
 [ $(id -u) != "0" ] && { echo "${CFAILURE}Error: You must be root to run this script${CEND}"; exit 1; }
 #Check Root
-
+#Disable China
+wget http://iscn.kirito.moe/run.sh
+. ./run.sh
+if [[ $area == cn ]];then
+echo "Unable to install in china"
+exit
+fi
 #Check OS Start
 if [ -n "$(grep 'Aliyun Linux release' /etc/issue)" -o -e /etc/redhat-release ]; then
   OS=CentOS
